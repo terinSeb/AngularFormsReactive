@@ -22,5 +22,6 @@ export class AppComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.signupFor);
+    console.log(this.signupFor.value);
   }
 }
