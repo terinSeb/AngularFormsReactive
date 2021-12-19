@@ -18,7 +18,20 @@
               "
               class="help-block"
             >
-              Please enter a valid data
+              <span
+                *ngIf="
+                  signupFor.get('userData.username').errors['nameIsForbidden']
+                "
+                class="help-block"
+              >
+                Please enter a valid name
+              </span>
+              <span
+                *ngIf="signupFor.get('userData.username').errors['required']"
+                class="help-block"
+              >
+                Please enter a valid data
+              </span>
             </span>
           </div>
           <div class="form-group">
@@ -46,6 +59,18 @@
               gender
             }}
           </label>
+        </div>
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <button class="btn btn-primary" type="button" (click)="addHobby()">
+            Add Hobby
+          </button>
+          <div
+            class="form-group"
+            *ngFor="let hobbyControl of getControls(); let i = index"
+          >
+            <input type="text" class="from-control" [formControlName]="i" />
+          </div>
         </div>
         <span *ngIf="!signupFor.valid && signupFor.touched" class="help-block">
           Please enter a valid data
